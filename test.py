@@ -24,12 +24,13 @@ faces = dataset.data
 
 n_samples, n_features = faces.shape
 
-from FactorAnalysis import FactorAnalyzer
+from FasterFactorAnalysis import FactorAnalyzer
 
-fa = FactorAnalyzer(16, num_iterations=15)
-
+fa = FactorAnalyzer(16, num_iterations=10)
+t0 = time()
 fa.fit(faces.T)
-
+train_time = (time() - t0)
+print 'done in %0.3f' % train_time
 pl.figure(figsize=(2. * n_col, 2.26 * n_row))
 
 for i in range(16):
